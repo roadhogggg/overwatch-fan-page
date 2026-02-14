@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Overwatch Fan Page</title>
+    <title>Overwatch Ultimate Fan Page</title>
     <style>
-        /* Full-screen background */
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             color: white;
             text-align: center;
-            background-image: url('images/overwatch-background.jpg'); /* make sure this matches your uploaded image */
+            background-image: url('images/overwatch-background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
         }
 
-        /* Dark overlay for readability */
         body::before {
             content: "";
             position: fixed;
             top:0; left:0;
             width:100%; height:100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.55);
             z-index: -1;
         }
 
-        h1 { color: orange; margin-top: 20px; }
-        h2 { color: gold; margin-top: 20px; }
+        h1 { color: orange; margin-top: 20px; text-shadow: 2px 2px 10px black; }
+        h2 { color: gold; margin-top: 20px; text-shadow: 1px 1px 5px black; }
+
         #search-box {
             padding: 12px;
             font-size: 18px;
@@ -37,58 +36,57 @@
             width: 250px;
         }
 
-        /* Buttons container */
         #buttons-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             max-height: 500px;
             overflow-y: auto;
-            padding: 10px;
+            padding: 15px;
             margin: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             background-color: rgba(0,0,0,0.6);
             border: 2px solid orange;
         }
 
-        /* Big glowing buttons */
         #buttons-container button {
             background-color: orange;
             border: none;
-            padding: 25px 40px;
+            padding: 28px 45px;
             margin: 10px;
             font-size: 22px;
             cursor: pointer;
-            border-radius: 12px;
-            transition: 0.3s;
+            border-radius: 15px;
+            transition: all 0.3s ease;
             box-shadow: 0 0 15px orange;
             animation: pulse 2s infinite;
         }
 
         #buttons-container button:hover {
             background-color: darkorange;
-            box-shadow: 0 0 30px orange, 0 0 60px gold;
+            box-shadow: 0 0 35px orange, 0 0 70px gold;
+            transform: scale(1.12);
         }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 15px orange; transform: scale(1); }
-            50% { box-shadow: 0 0 30px gold; transform: scale(1.1); }
+            50% { box-shadow: 0 0 35px gold; transform: scale(1.08); }
             100% { box-shadow: 0 0 15px orange; transform: scale(1); }
         }
 
-        /* Hero info card */
         #hero-info {
             margin-top: 25px;
             font-size: 18px;
-            max-width: 800px;
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
-            padding: 15px;
-            background-color: rgba(0,0,0,0.7);
-            border-radius: 10px;
+            padding: 18px;
+            background-color: rgba(0,0,0,0.75);
+            border-radius: 12px;
             opacity: 0;
             transform: scale(0.95);
             transition: all 0.5s ease;
+            white-space: pre-line;
         }
 
         #hero-info.show {
@@ -96,15 +94,14 @@
             transform: scale(1);
         }
 
-        /* Patch notes section */
         #patch-notes {
             margin-top: 40px;
-            max-width: 800px;
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
-            padding: 15px;
-            background-color: rgba(0,0,0,0.7);
-            border-radius: 10px;
+            padding: 18px;
+            background-color: rgba(0,0,0,0.75);
+            border-radius: 12px;
             text-align: left;
         }
 
@@ -117,12 +114,21 @@
         }
 
         body > * { position: relative; z-index: 1; }
+
+        /* Scrollbar styling for hero buttons container */
+        #buttons-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #buttons-container::-webkit-scrollbar-thumb {
+            background-color: orange;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
 
-<h1>Overwatch Fan Page</h1>
-<p>All your favorite heroes & patch updates 🎮</p>
+<h1>Overwatch Ultimate Fan Page</h1>
+<p>All heroes, abilities, ultimates & latest patch notes!</p>
 
 <input type="text" id="search-box" placeholder="Search hero..." onkeyup="searchHero()">
 
@@ -158,10 +164,9 @@
 <h2>Patch Notes</h2>
 <div id="patch-notes">
     <ul>
-        <li><strong>Patch 1.72:</strong> Buffed Tracer's blink speed. Nerfed Reaper's shotguns.</li>
-        <li><strong>Patch 1.71:</strong> Mercy's rez cooldown reduced. Added new event skins.</li>
-        <li><strong>Patch 1.70:</strong> New map added: Horizon Lunar Colony. Zenyatta ultimate charge time reduced.</li>
-        <!-- Add more patches as you want -->
+        <li><strong>Patch 1.72:</strong> Buffed Tracer blink, nerfed Reaper shotguns, new skins released.</li>
+        <li><strong>Patch 1.71:</strong> Mercy rez cooldown reduced, added seasonal event skins.</li>
+        <li><strong>Patch 1.70:</strong> Horizon Lunar Colony map added, Zenyatta ultimate charge reduced.</li>
     </ul>
 </div>
 
@@ -169,29 +174,29 @@
 
 <script>
 const heroInfo = {
-    "Tracer": "Abilities: Blink, Recall\nUltimate: Pulse Bomb",
-    "Genji": "Abilities: Shuriken, Deflect, Swift Strike\nUltimate: Dragonblade",
-    "Mercy": "Abilities: Caduceus Staff, Guardian Angel, Resurrect\nUltimate: Valkyrie",
-    "Reaper": "Abilities: Shotguns, Wraith Form, Shadow Step\nUltimate: Death Blossom",
-    "Soldier 76": "Abilities: Sprint, Helix Rockets, Biotic Field\nUltimate: Tactical Visor",
-    "D.Va": "Abilities: Fusion Cannons, Boosters, Defense Matrix\nUltimate: Self-Destruct",
-    "Hanzo": "Abilities: Storm Bow, Sonic Arrow, Lunge\nUltimate: Dragonstrike",
-    "Ana": "Abilities: Biotic Rifle, Sleep Dart, Biotic Grenade\nUltimate: Nano Boost",
-    "Winston": "Abilities: Jump Pack, Tesla Cannon, Barrier Projector\nUltimate: Primal Rage",
-    "Bastion": "Abilities: Configuration: Recon/Tank, Self-Repair\nUltimate: Tank Configuration",
-    "Sombra": "Abilities: Machine Pistol, Hack, Translocator\nUltimate: EMP",
-    "Symmetra": "Abilities: Photon Projector, Sentry Turret, Teleporter\nUltimate: Photon Barrier",
-    "Torbjörn": "Abilities: Rivet Gun, Hammer, Deploy Turret\nUltimate: Molten Core",
-    "Zenyatta": "Abilities: Orb of Destruction, Orb of Harmony, Orb of Discord\nUltimate: Transcendence",
-    "Moira": "Abilities: Biotic Grasp, Fade, Biotic Orb\nUltimate: Coalescence",
-    "Orisa": "Abilities: Fusion Driver, Halt!, Protective Barrier\nUltimate: Supercharger",
-    "Roadhog": "Abilities: Scrap Gun, Take a Breather, Chain Hook\nUltimate: Whole Hog",
-    "Junkrat": "Abilities: Frag Launcher, Concussion Mine, Steel Trap\nUltimate: RIP-Tire",
-    "Pharah": "Abilities: Rocket Launcher, Jump Jet, Concussive Blast\nUltimate: Barrage",
-    "Reinhardt": "Abilities: Rocket Hammer, Barrier Field, Charge, Fire Strike\nUltimate: Earthshatter",
-    "Zarya": "Abilities: Particle Cannon, Particle Barrier, Projected Barrier\nUltimate: Graviton Surge",
-    "Widowmaker": "Abilities: Widow's Kiss, Grappling Hook, Venom Mine\nUltimate: Infra-Sight",
-    "Soldier: Ashe": "Abilities: Viper, Coach Gun, Dynamite\nUltimate: B.O.B."
+    "Tracer": "Abilities: Blink, Recall\nUltimate: Pulse Bomb\nFun Fact: Loves tea and mischief!",
+    "Genji": "Abilities: Shuriken, Deflect, Swift Strike\nUltimate: Dragonblade\nFun Fact: Brother of Hanzo, cyborg ninja!",
+    "Mercy": "Abilities: Caduceus Staff, Guardian Angel, Resurrect\nUltimate: Valkyrie\nFun Fact: Swiss field medic with angel wings!",
+    "Reaper": "Abilities: Shotguns, Wraith Form, Shadow Step\nUltimate: Death Blossom\nFun Fact: Mystery man with dual shotguns.",
+    "Soldier 76": "Abilities: Sprint, Helix Rockets, Biotic Field\nUltimate: Tactical Visor\nFun Fact: Classic all-rounder hero.",
+    "D.Va": "Abilities: Fusion Cannons, Boosters, Defense Matrix\nUltimate: Self-Destruct\nFun Fact: Pro gamer piloting a mech!",
+    "Hanzo": "Abilities: Storm Bow, Sonic Arrow, Lunge\nUltimate: Dragonstrike\nFun Fact: Master archer with a tragic past.",
+    "Ana": "Abilities: Biotic Rifle, Sleep Dart, Biotic Grenade\nUltimate: Nano Boost\nFun Fact: Veteran healer sniper.",
+    "Winston": "Abilities: Jump Pack, Tesla Cannon, Barrier Projector\nUltimate: Primal Rage\nFun Fact: Genius gorilla scientist.",
+    "Bastion": "Abilities: Configuration: Recon/Tank, Self-Repair\nUltimate: Tank Configuration\nFun Fact: Loves nature and birds.",
+    "Sombra": "Abilities: Machine Pistol, Hack, Translocator\nUltimate: EMP\nFun Fact: Hacker extraordinaire.",
+    "Symmetra": "Abilities: Photon Projector, Sentry Turret, Teleporter\nUltimate: Photon Barrier\nFun Fact: Architect who controls hard light.",
+    "Torbjörn": "Abilities: Rivet Gun, Hammer, Deploy Turret\nUltimate: Molten Core\nFun Fact: Master engineer with a beard.",
+    "Zenyatta": "Abilities: Orb of Destruction, Harmony, Discord\nUltimate: Transcendence\nFun Fact: Omnic monk spreading peace.",
+    "Moira": "Abilities: Biotic Grasp, Fade, Biotic Orb\nUltimate: Coalescence\nFun Fact: Geneticist with a mysterious past.",
+    "Orisa": "Abilities: Fusion Driver, Halt!, Protective Barrier\nUltimate: Supercharger\nFun Fact: Guardian robot built to protect.",
+    "Roadhog": "Abilities: Scrap Gun, Take a Breather, Chain Hook\nUltimate: Whole Hog\nFun Fact: Loves scrap and chaos.",
+    "Junkrat": "Abilities: Frag Launcher, Concussion Mine, Steel Trap\nUltimate: RIP-Tire\nFun Fact: Explosives fan with laughter.",
+    "Pharah": "Abilities: Rocket Launcher, Jump Jet, Concussive Blast\nUltimate: Barrage\nFun Fact: Dreams of flying high.",
+    "Reinhardt": "Abilities: Rocket Hammer, Barrier Field, Charge, Fire Strike\nUltimate: Earthshatter\nFun Fact: German knight with big hammer.",
+    "Zarya": "Abilities: Particle Cannon, Particle Barrier, Projected Barrier\nUltimate: Graviton Surge\nFun Fact: Strongest woman in Overwatch.",
+    "Widowmaker": "Abilities: Widow's Kiss, Grappling Hook, Venom Mine\nUltimate: Infra-Sight\nFun Fact: Deadly sniper with icy heart.",
+    "Soldier: Ashe": "Abilities: Viper, Coach Gun, Dynamite\nUltimate: B.O.B.\nFun Fact: Leader of Deadlock Gang."
 };
 
 function showHero(hero) {
@@ -217,8 +222,7 @@ const ctx = canvas.getContext('2d');
 let w = canvas.width = window.innerWidth;
 let h = canvas.height = window.innerHeight;
 const particles = [];
-const particleCount = 100;
-for(let i=0;i<particleCount;i++){
+for(let i=0;i<120;i++){
     particles.push({
         x: Math.random()*w,
         y: Math.random()*h,
@@ -253,4 +257,3 @@ window.addEventListener('resize',()=>{
 
 </body>
 </html>
-
