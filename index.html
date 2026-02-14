@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Overwatch Fan Page</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial;
+        }
+
+        h1 {
+            color: orange;
+        }
+
+        button {
+            background-color: orange;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkorange;
+        }
+
+        #hero-info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Overwatch Fan Page</h1>
+    <p>This is a fan-made website 🎮</p>
+
+    <h2>Choose a Hero</h2>
+
+    <button onclick="showHero('Tracer')">Tracer</button>
+    <button onclick="showHero('Genji')">Genji</button>
+    <button onclick="showHero('Mercy')">Mercy</button>
+
+    <div id="hero-info"></div>
+
+    <script>
+        function showHero(hero) {
+            var info = "";
+
+            if (hero === "Tracer") {
+                info = "Tracer is fast and can rewind time!";
+            } 
+            else if (hero === "Genji") {
+                info = "Genji is a cool cyber ninja!";
+            } 
+            else if (hero === "Mercy") {
+                info = "Mercy can heal her teammates!";
+            }
+
+            document.getElementById("hero-info").innerHTML = info;
+        }
+    </script>
+
+</body>
+</html>
