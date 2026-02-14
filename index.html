@@ -4,65 +4,74 @@
     <title>Overwatch Fan Page</title>
     <style>
         body {
-            background-color: black;
+            background: linear-gradient(to bottom, #1f1f1f, #111);
             color: white;
             text-align: center;
             font-family: Arial;
         }
-
-        h1 {
-            color: orange;
-        }
-
+        h1 { color: orange; }
         button {
             background-color: orange;
             border: none;
-            padding: 10px;
-            margin: 5px;
+            padding: 10px 20px;
+            margin: 10px;
             font-size: 16px;
             cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
         }
-
         button:hover {
             background-color: darkorange;
+            box-shadow: 0 0 15px orange;
         }
-
         #hero-info {
             margin-top: 20px;
             font-size: 18px;
+        }
+        #hero-info img {
+            width: 150px;
+            margin-top: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Overwatch Fan Page</h1>
-    <p>This is a fan-made website 🎮</p>
+<h1>Overwatch Fan Page</h1>
+<p>This is a fan-made website 🎮</p>
 
-    <h2>Choose a Hero</h2>
+<h2>Choose a Hero</h2>
+<button onclick="showHero('Tracer')">Tracer</button>
+<button onclick="showHero('Genji')">Genji</button>
+<button onclick="showHero('Mercy')">Mercy</button>
 
-    <button onclick="showHero('Tracer')">Tracer</button>
-    <button onclick="showHero('Genji')">Genji</button>
-    <button onclick="showHero('Mercy')">Mercy</button>
+<div id="hero-info"></div>
 
-    <div id="hero-info"></div>
-
-    <script>
-        function showHero(hero) {
-            var info = "";
-
-            if (hero === "Tracer") {
-                info = "Tracer is fast and can rewind time!";
-            } 
-            else if (hero === "Genji") {
-                info = "Genji is a cool cyber ninja!";
-            } 
-            else if (hero === "Mercy") {
-                info = "Mercy can heal her teammates!";
-            }
-
-            document.getElementById("hero-info").innerHTML = info;
+<script>
+function showHero(hero) {
+    const heroInfo = {
+        Tracer: {
+            text: "Tracer is fast and can rewind time!",
+            img: "https://static.wikia.nocookie.net/overwatch/images/9/9f/Tracer-portrait.png"
+        },
+        Genji: {
+            text: "Genji is a cyber ninja!",
+            img: "https://static.wikia.nocookie.net/overwatch/images/5/57/Genji-portrait.png"
+        },
+        Mercy: {
+            text: "Mercy can heal her teammates!",
+            img: "https://static.wikia.nocookie.net/overwatch/images/0/00/Mercy-portrait.png"
         }
-    </script>
+    };
+
+    const info = heroInfo[hero];
+    document.getElementById("hero-info").innerHTML = `
+        <h3>${hero}</h3>
+        <p>${info.text}</p>
+        <img src="${info.img}" alt="${hero}">
+    `;
+}
+</script>
 
 </body>
 </html>
