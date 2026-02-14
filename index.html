@@ -3,26 +3,41 @@
 <head>
     <title>Overwatch Fan Page</title>
     <style>
+        /* Background image with overlay */
         body {
-            background: linear-gradient(to bottom, #1f1f1f, #111);
-            color: white;
-            font-family: Arial;
             margin: 0;
-            padding: 0;
+            font-family: Arial;
+            color: white;
             text-align: center;
+            background-image: url('https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f8/Overwatch_splash_art.jpg'); /* guaranteed working Overwatch image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
         }
+
+        /* Dark overlay to make text readable */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: -1;
+        }
+
         h1 { color: orange; margin-top: 20px; }
         #buttons-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             max-height: 300px;
-            overflow-y: scroll;
+            overflow-y: auto;
             padding: 10px;
             border: 2px solid orange;
             margin: 20px;
             border-radius: 10px;
-            background-color: #222;
+            background-color: rgba(0,0,0,0.6);
         }
         button {
             background-color: orange;
@@ -36,16 +51,24 @@
         }
         button:hover {
             background-color: darkorange;
-            box-shadow: 0 0 15px orange;
+            box-shadow: 0 0 10px orange;
         }
         #hero-info {
             margin-top: 20px;
             font-size: 16px;
         }
         #hero-info img {
-            width: 150px;
+            width: 120px;
             margin-top: 10px;
-            border-radius: 10px;
+            border-radius: 8px;
+        }
+        #search-box {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 2px solid orange;
+            width: 220px;
         }
     </style>
 </head>
@@ -53,6 +76,8 @@
 
 <h1>Overwatch Fan Page</h1>
 <p>This is a fan-made website 🎮</p>
+
+<input type="text" id="search-box" placeholder="Search hero..." onkeyup="searchHero()">
 
 <h2>Choose a Hero</h2>
 <div id="buttons-container">
@@ -66,14 +91,19 @@
     <button onclick="showHero('Ana')">Ana</button>
     <button onclick="showHero('Winston')">Winston</button>
     <button onclick="showHero('Bastion')">Bastion</button>
-    <button onclick="showHero('Symmetra')">Symmetra</button>
     <button onclick="showHero('Sombra')">Sombra</button>
+    <button onclick="showHero('Symmetra')">Symmetra</button>
     <button onclick="showHero('Torbjörn')">Torbjörn</button>
     <button onclick="showHero('Zenyatta')">Zenyatta</button>
     <button onclick="showHero('Moira')">Moira</button>
     <button onclick="showHero('Orisa')">Orisa</button>
     <button onclick="showHero('Roadhog')">Roadhog</button>
     <button onclick="showHero('Junkrat')">Junkrat</button>
+    <button onclick="showHero('Pharah')">Pharah</button>
+    <button onclick="showHero('Reinhardt')">Reinhardt</button>
+    <button onclick="showHero('Zarya')">Zarya</button>
+    <button onclick="showHero('Widowmaker')">Widowmaker</button>
+    <button onclick="showHero('Soldier: Ashe')">Ashe</button>
 </div>
 
 <div id="hero-info"></div>
@@ -82,34 +112,48 @@
 <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
 
 <script>
-function showHero(hero) {
-    const heroInfo = {
-        "Tracer": { text: "Tracer is fast and can rewind time!", img: "https://static.wikia.nocookie.net/overwatch/images/9/9f/Tracer-portrait.png" },
-        "Genji": { text: "Genji is a cyber ninja!", img: "https://static.wikia.nocookie.net/overwatch/images/5/57/Genji-portrait.png" },
-        "Mercy": { text: "Mercy can heal her teammates!", img: "https://static.wikia.nocookie.net/overwatch/images/0/00/Mercy-portrait.png" },
-        "Reaper": { text: "Reaper deals deadly close-range damage.", img: "https://static.wikia.nocookie.net/overwatch/images/f/fb/Reaper-portrait.png" },
-        "Soldier 76": { text: "Soldier 76 is a balanced damage hero.", img: "https://static.wikia.nocookie.net/overwatch/images/3/33/Soldier76-portrait.png" },
-        "D.Va": { text: "D.Va pilots a mech and blocks damage!", img: "https://static.wikia.nocookie.net/overwatch/images/2/2b/D.Va-portrait.png" },
-        "Hanzo": { text: "Hanzo is a sharpshooting archer.", img: "https://static.wikia.nocookie.net/overwatch/images/f/f2/Hanzo-portrait.png" },
-        "Ana": { text: "Ana heals and supports teammates from afar.", img: "https://static.wikia.nocookie.net/overwatch/images/7/77/Ana-portrait.png" },
-        "Winston": { text: "Winston is a tank gorilla who leaps into battle.", img: "https://static.wikia.nocookie.net/overwatch/images/3/32/Winston-portrait.png" },
-        "Bastion": { text: "Bastion transforms between mobile and turret modes.", img: "https://static.wikia.nocookie.net/overwatch/images/d/d2/Bastion-portrait.png" },
-        "Symmetra": { text: "Symmetra creates turrets and shields.", img: "https://static.wikia.nocookie.net/overwatch/images/c/cf/Symmetra-portrait.png" },
-        "Sombra": { text: "Sombra hacks enemies and disrupts them.", img: "https://static.wikia.nocookie.net/overwatch/images/f/f7/Sombra-portrait.png" },
-        "Torbjörn": { text: "Torbjörn builds turrets and upgrades them.", img: "https://static.wikia.nocookie.net/overwatch/images/7/7f/Torbjorn-portrait.png" },
-        "Zenyatta": { text: "Zenyatta heals allies and damages enemies with orbs.", img: "https://static.wikia.nocookie.net/overwatch/images/5/5c/Zenyatta-portrait.png" },
-        "Moira": { text: "Moira heals allies and drains enemies.", img: "https://static.wikia.nocookie.net/overwatch/images/0/00/Moira-portrait.png" },
-        "Orisa": { text: "Orisa is a tank who protects allies.", img: "https://static.wikia.nocookie.net/overwatch/images/f/fd/Orisa-portrait.png" },
-        "Roadhog": { text: "Roadhog can hook enemies and tank damage.", img: "https://static.wikia.nocookie.net/overwatch/images/4/44/Roadhog-portrait.png" },
-        "Junkrat": { text: "Junkrat throws explosives everywhere.", img: "https://static.wikia.nocookie.net/overwatch/images/2/2e/Junkrat-portrait.png" }
-    };
+const heroInfo = {
+    "Tracer": { text: "Tracer can blink and rewind time!", img: "https://static.wikia.nocookie.net/overwatch/images/9/9f/Tracer-link.png" },
+    "Genji": { text: "Genji is a cyber ninja!", img: "https://static.wikia.nocookie.net/overwatch/images/e/ec/Genji-link.png" },
+    "Mercy": { text: "Mercy heals her teammates!", img: "https://static.wikia.nocookie.net/overwatch/images/7/7c/Mercy-link.png" },
+    "Reaper": { text: "Reaper deals deadly close-range damage.", img: "https://static.wikia.nocookie.net/overwatch/images/f/fb/Reaper-link.png" },
+    "Soldier 76": { text: "Balanced all-around damage hero.", img: "https://static.wikia.nocookie.net/overwatch/images/3/33/Soldier76-link.png" },
+    "D.Va": { text: "D.Va pilots a mech and blocks damage!", img: "https://static.wikia.nocookie.net/overwatch/images/2/2b/D.Va-link.png" },
+    "Hanzo": { text: "Hanzo is a sharpshooting archer.", img: "https://static.wikia.nocookie.net/overwatch/images/4/4a/Hanzo-link.png" },
+    "Ana": { text: "Ana heals and supports from afar.", img: "https://static.wikia.nocookie.net/overwatch/images/7/77/Ana-link.png" },
+    "Winston": { text: "Winston is a tank gorilla who leaps into battle.", img: "https://static.wikia.nocookie.net/overwatch/images/3/32/Winston-link.png" },
+    "Bastion": { text: "Bastion transforms between mobile and turret modes.", img: "https://static.wikia.nocookie.net/overwatch/images/d/d2/Bastion-link.png" },
+    "Sombra": { text: "Sombra hacks enemies and disrupts them.", img: "https://static.wikia.nocookie.net/overwatch/images/f/f7/Sombra-link.png" },
+    "Symmetra": { text: "Symmetra creates turrets and shields.", img: "https://static.wikia.nocookie.net/overwatch/images/c/cf/Symmetra-link.png" },
+    "Torbjörn": { text: "Torbjörn builds turrets and upgrades them.", img: "https://static.wikia.nocookie.net/overwatch/images/7/7f/Torbjorn-link.png" },
+    "Zenyatta": { text: "Zenyatta heals allies and damages enemies with orbs.", img: "https://static.wikia.nocookie.net/overwatch/images/5/5c/Zenyatta-link.png" },
+    "Moira": { text: "Moira heals allies and drains enemies.", img: "https://static.wikia.nocookie.net/overwatch/images/0/00/Moira-link.png" },
+    "Orisa": { text: "Orisa is a tank who protects allies.", img: "https://static.wikia.nocookie.net/overwatch/images/f/fd/Orisa-link.png" },
+    "Roadhog": { text: "Roadhog can hook enemies and tank damage.", img: "https://static.wikia.nocookie.net/overwatch/images/4/44/Roadhog-link.png" },
+    "Junkrat": { text: "Junkrat throws explosives everywhere.", img: "https://static.wikia.nocookie.net/overwatch/images/2/2e/Junkrat-link.png" },
+    "Pharah": { text: "Pharah rains rockets from above!", img: "https://static.wikia.nocookie.net/overwatch/images/6/60/Pharah-link.png" },
+    "Reinhardt": { text: "Reinhardt charges and protects with his shield!", img: "https://static.wikia.nocookie.net/overwatch/images/3/3b/Reinhardt-link.png" },
+    "Zarya": { text: "Zarya’s barrier protects allies and empowers her weapons!", img: "https://static.wikia.nocookie.net/overwatch/images/1/17/Zarya-link.png" },
+    "Widowmaker": { text: "Widowmaker is a deadly sniper!", img: "https://static.wikia.nocookie.net/overwatch/images/8/80/Widowmaker-link.png" },
+    "Soldier: Ashe": { text: "Ashe leads the Deadlock Gang with style!", img: "https://static.wikia.nocookie.net/overwatch/images/9/99/Ashe-link.png" }
+};
 
+function showHero(hero) {
     const info = heroInfo[hero];
+    if (!info) return;
     document.getElementById("hero-info").innerHTML = `
         <h3>${hero}</h3>
         <p>${info.text}</p>
         <img src="${info.img}" alt="${hero}">
     `;
+}
+
+function searchHero() {
+    const input = document.getElementById("search-box").value.toLowerCase();
+    const buttons = document.querySelectorAll("#buttons-container button");
+    buttons.forEach(btn => {
+        btn.style.display = btn.textContent.toLowerCase().includes(input) ? "inline-block" : "none";
+    });
 }
 </script>
 
