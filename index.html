@@ -1,23 +1,22 @@
-PE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Overwatch Fan Page</title>
     <style>
-        /* Full-screen background */
+        /* Full-page background using local image */
         body {
             margin: 0;
             font-family: Arial;
             color: white;
             text-align: center;
-            /* Local background image */
-            background-image: url('images/overwatch-background.jpg');
+            background-image: url('images/overwatch-background.jpg'); /* local path */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
         }
 
-        /* Overlay so text/buttons are readable */
+        /* Dark overlay for readability */
         body::before {
             content: "";
             position: fixed;
@@ -37,7 +36,6 @@ PE html>
             width: 220px;
         }
 
-        /* Buttons container */
         #buttons-container {
             display: flex;
             flex-wrap: wrap;
@@ -51,7 +49,6 @@ PE html>
             border: 2px solid orange;
         }
 
-        /* Big clickable buttons */
         #buttons-container button {
             background-color: orange;
             border: none;
@@ -68,7 +65,6 @@ PE html>
             box-shadow: 0 0 15px orange;
         }
 
-        /* Hero info card */
         #hero-info {
             margin-top: 20px;
             font-size: 16px;
@@ -82,7 +78,6 @@ PE html>
             transform: scale(1);
         }
 
-        /* Sparkle canvas */
         #particles {
             position: fixed;
             top:0; left:0;
@@ -90,7 +85,8 @@ PE html>
             pointer-events: none;
             z-index: 0;
         }
-        body > * { position: relative; z-index: 1; } /* keep buttons above particles */
+
+        body > * { position: relative; z-index: 1; }
     </style>
 </head>
 <body>
@@ -129,7 +125,6 @@ PE html>
 
 <div id="hero-info"></div>
 
-<!-- Sparkle/particle effect -->
 <canvas id="particles"></canvas>
 
 <script>
@@ -176,7 +171,7 @@ function searchHero() {
     });
 }
 
-/* Sparkle/particle effect */
+/* Sparkle particles */
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let w = canvas.width = window.innerWidth;
