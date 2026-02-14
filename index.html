@@ -9,14 +9,14 @@
             font-family: Arial;
             color: white;
             text-align: center;
-            background-image: url('https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f8/Overwatch_splash_art.jpg'); /* guaranteed full Overwatch pic */
+            background-image: url('https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f8/Overwatch_splash_art.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
         }
 
-        /* Overlay so text/buttons are readable */
+        /* Overlay to make text readable */
         body::before {
             content: "";
             position: fixed;
@@ -50,7 +50,7 @@
             border: 2px solid orange;
         }
 
-        /* Bigger buttons */
+        /* Big clickable buttons */
         #buttons-container button {
             background-color: orange;
             border: none;
@@ -80,6 +80,16 @@
             opacity: 1;
             transform: scale(1);
         }
+
+        /* Sparkle canvas */
+        #particles {
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            pointer-events: none; /* clicks go through */
+            z-index: 0;
+        }
+        body > * { position: relative; z-index: 1; } /* keep buttons above particles */
     </style>
 </head>
 <body>
@@ -118,6 +128,9 @@
 
 <div id="hero-info"></div>
 
+<!-- Sparkle/particle effect -->
+<canvas id="particles"></canvas>
+
 <script>
 const heroInfo = {
     "Tracer": "Tracer can blink and rewind time!",
@@ -150,7 +163,7 @@ function showHero(hero) {
     const heroDiv = document.getElementById("hero-info");
     heroDiv.textContent = info;
     heroDiv.classList.remove("show");
-    void heroDiv.offsetWidth; // force reflow
+    void heroDiv.offsetWidth;
     heroDiv.classList.add("show");
 }
 
@@ -161,6 +174,45 @@ function searchHero() {
         btn.style.display = btn.textContent.toLowerCase().includes(input) ? "inline-block" : "none";
     });
 }
+
+/* Sparkle/particle effect */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+const particles = [];
+const particleCount = 80;
+for(let i=0;i<particleCount;i++){
+    particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*3 + 1,
+        dx: (Math.random()-0.5)*1,
+        dy: Math.random()*1.5 + 0.5
+    });
+}
+function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle='rgba(255,255,255,0.8)';
+    ctx.shadowBlur = 5;
+    ctx.shadowColor = 'white';
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if(p.y>h){p.y=0;p.x=Math.random()*w;}
+        if(p.x>w){p.x=0;}
+        if(p.x<0){p.x=w;}
+    });
+    requestAnimationFrame(draw);
+}
+draw();
+window.addEventListener('resize',()=>{
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
 </script>
 
 </body>
