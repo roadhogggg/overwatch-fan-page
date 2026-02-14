@@ -13,9 +13,9 @@
         button {
             background-color: orange;
             border: none;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 14px;
             cursor: pointer;
             border-radius: 5px;
             transition: 0.3s;
@@ -26,12 +26,17 @@
         }
         #hero-info {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 16px;
         }
         #hero-info img {
             width: 150px;
             margin-top: 10px;
             border-radius: 10px;
+        }
+        #buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
     </style>
 </head>
@@ -41,27 +46,35 @@
 <p>This is a fan-made website 🎮</p>
 
 <h2>Choose a Hero</h2>
-<button onclick="showHero('Tracer')">Tracer</button>
-<button onclick="showHero('Genji')">Genji</button>
-<button onclick="showHero('Mercy')">Mercy</button>
+<div id="buttons-container">
+    <button onclick="showHero('Tracer')">Tracer</button>
+    <button onclick="showHero('Genji')">Genji</button>
+    <button onclick="showHero('Mercy')">Mercy</button>
+    <button onclick="showHero('Reaper')">Reaper</button>
+    <button onclick="showHero('Soldier 76')">Soldier 76</button>
+    <button onclick="showHero('D.Va')">D.Va</button>
+    <button onclick="showHero('Hanzo')">Hanzo</button>
+    <button onclick="showHero('Ana')">Ana</button>
+    <button onclick="showHero('Winston')">Winston</button>
+</div>
 
 <div id="hero-info"></div>
+
+<!-- Background music -->
+<audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
 
 <script>
 function showHero(hero) {
     const heroInfo = {
-        Tracer: {
-            text: "Tracer is fast and can rewind time!",
-            img: "https://static.wikia.nocookie.net/overwatch/images/9/9f/Tracer-portrait.png"
-        },
-        Genji: {
-            text: "Genji is a cyber ninja!",
-            img: "https://static.wikia.nocookie.net/overwatch/images/5/57/Genji-portrait.png"
-        },
-        Mercy: {
-            text: "Mercy can heal her teammates!",
-            img: "https://static.wikia.nocookie.net/overwatch/images/0/00/Mercy-portrait.png"
-        }
+        "Tracer": { text: "Tracer is fast and can rewind time!", img: "https://static.wikia.nocookie.net/overwatch/images/9/9f/Tracer-portrait.png" },
+        "Genji": { text: "Genji is a cyber ninja!", img: "https://static.wikia.nocookie.net/overwatch/images/5/57/Genji-portrait.png" },
+        "Mercy": { text: "Mercy can heal her teammates!", img: "https://static.wikia.nocookie.net/overwatch/images/0/00/Mercy-portrait.png" },
+        "Reaper": { text: "Reaper deals deadly close-range damage.", img: "https://static.wikia.nocookie.net/overwatch/images/f/fb/Reaper-portrait.png" },
+        "Soldier 76": { text: "Soldier 76 is a balanced damage hero.", img: "https://static.wikia.nocookie.net/overwatch/images/3/33/Soldier76-portrait.png" },
+        "D.Va": { text: "D.Va pilots a mech and blocks damage!", img: "https://static.wikia.nocookie.net/overwatch/images/2/2b/D.Va-portrait.png" },
+        "Hanzo": { text: "Hanzo is a sharpshooting archer.", img: "https://static.wikia.nocookie.net/overwatch/images/f/f2/Hanzo-portrait.png" },
+        "Ana": { text: "Ana heals and supports teammates from afar.", img: "https://static.wikia.nocookie.net/overwatch/images/7/77/Ana-portrait.png" },
+        "Winston": { text: "Winston is a tank gorilla who leaps into battle.", img: "https://static.wikia.nocookie.net/overwatch/images/3/32/Winston-portrait.png" }
     };
 
     const info = heroInfo[hero];
