@@ -1,332 +1,147 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Overwatch Ultimate Fan Page</title>
-
-    <!-- Google Fonts for fancy text -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Orbitron', sans-serif;
-            color: white;
-            text-align: center;
-            background-image: url('images/overwatch-background.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top:0; left:0;
-            width:100%; height:100%;
-            background-color: rgba(0,0,0,0.55);
-            z-index: -1;
-        }
-
-        h1 {
-            font-family: 'Press Start 2P', cursive;
-            color: orange;
-            text-shadow: 2px 2px 15px black, 0 0 10px orange;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: gold;
-            text-shadow: 1px 1px 8px black, 0 0 5px gold;
-            margin-top: 20px;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        #search-box {
-            padding: 12px;
-            font-size: 18px;
-            margin-top: 15px;
-            border-radius: 5px;
-            border: 2px solid orange;
-            width: 250px;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        #buttons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-height: 500px;
-            overflow-y: auto;
-            padding: 15px;
-            margin: 20px;
-            border-radius: 12px;
-            background-color: rgba(0,0,0,0.6);
-            border: 2px solid orange;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        #buttons-container button {
-            background-color: orange;
-            border: none;
-            padding: 28px 45px;
-            margin: 10px;
-            font-size: 22px;
-            cursor: pointer;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px orange;
-            animation: pulse 2s infinite;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 1px 1px 5px black;
-            will-change: transform, box-shadow;
-        }
-
-        #buttons-container button:hover {
-            background-color: darkorange;
-            box-shadow: 0 0 50px orange, 0 0 100px gold;
-            transform: scale(1.15) rotate(-2deg);
-            animation: wiggle 0.5s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 15px orange; transform: scale(1); }
-            50% { box-shadow: 0 0 35px gold; transform: scale(1.08); }
-            100% { box-shadow: 0 0 15px orange; transform: scale(1); }
-        }
-
-        @keyframes wiggle {
-            0% { transform: scale(1.12) rotate(-2deg); }
-            25% { transform: scale(1.14) rotate(2deg); }
-            50% { transform: scale(1.12) rotate(-2deg); }
-            75% { transform: scale(1.14) rotate(2deg); }
-            100% { transform: scale(1.12) rotate(-2deg); }
-        }
-
-        #hero-info {
-            margin-top: 25px;
-            font-size: 18px;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 18px;
-            background-color: rgba(0,0,0,0.75);
-            border-radius: 12px;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.5s ease;
-            white-space: pre-line;
-            background: linear-gradient(90deg, #ffb347, #ffcc33);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 1px 1px 5px black;
-        }
-
-        #hero-info.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        #patch-notes {
-            margin-top: 40px;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 18px;
-            background-color: rgba(0,0,0,0.75);
-            border-radius: 12px;
-            text-align: left;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        #patch-notes ul li::before {
-            content: "★ ";
-            color: orange;
-            margin-right: 5px;
-        }
-
-        #particles {
-            position: fixed;
-            top:0; left:0;
-            width:100%; height:100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        body > * { position: relative; z-index: 1; }
-
-        /* Play Overwatch button */
-        #play-game-button {
-            background-color: #ff6600;
-            border: none;
-            padding: 28px 60px;
-            margin: 20px auto;
-            font-size: 26px;
-            border-radius: 20px;
-            cursor: pointer;
-            box-shadow: 0 0 20px #ff6600;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 1px 1px 5px black;
-            transition: all 0.3s ease;
-            display: block;
-            animation: pulse 2s infinite;
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
-        #play-game-button:hover {
-            background-color: darkorange;
-            box-shadow: 0 0 50px orange, 0 0 100px gold;
-            transform: scale(1.15) rotate(-2deg);
-            animation: wiggle 0.5s infinite alternate;
-        }
-
-    </style>
+<meta charset="UTF-8">
+<title>Reinhardt Fan Site + Game</title>
+<style>
+body{margin:0;overflow:hidden;font-family:Arial;background:#111;color:white;}
+.screen{position:absolute;width:100%;height:100%;display:none;justify-content:center;align-items:center;flex-direction:column;}
+.active{display:flex;}
+h1{color:gold;text-shadow:0 0 10px gold;}
+button{margin:10px;padding:15px 40px;background:gold;border:none;border-radius:10px;font-size:20px;cursor:pointer;transition:.3s;}
+button:hover{transform:scale(1.1);background:orange;}
+/* UI */
+#ui{position:fixed;top:10px;left:10px;}
+.bar{width:200px;height:20px;border:2px solid white;margin:5px 0;}
+.fill{height:100%;}
+#hp{background:red;}#sp{background:cyan;}
+#score{margin-top:5px;}
+/* Player/Game elements */
+.player{width:40px;height:40px;background:gold;position:absolute;transition:transform .1s;}
+.enemy{width:30px;height:30px;background:red;position:absolute;}
+.boss{width:80px;height:80px;background:purple;position:absolute;}
+.projectile{width:10px;height:10px;background:orange;position:absolute;border-radius:50%;}
+.wall{position:absolute;background:#555;}
+#flash{position:fixed;width:100%;height:100%;background:white;opacity:0;pointer-events:none;z-index:999;}
+#gameOver{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:none;text-align:center;}
+</style>
 </head>
 <body>
 
-<h1>Overwatch Ultimate Fan Page</h1>
-<p>All heroes, abilities, ultimates & latest patch notes!</p>
-
-<a href="https://playoverwatch.com" target="_blank">
-  <button id="play-game-button">Play Overwatch</button>
-</a>
-
-<input type="text" id="search-box" placeholder="Search hero..." onkeyup="searchHero()">
-
-<h2>Choose a Hero</h2>
-<div id="buttons-container">
-    <button onclick="showHero('Tracer')">Tracer</button>
-    <button onclick="showHero('Genji')">Genji</button>
-    <button onclick="showHero('Mercy')">Mercy</button>
-    <button onclick="showHero('Reaper')">Reaper</button>
-    <button onclick="showHero('Soldier 76')">Soldier 76</button>
-    <button onclick="showHero('D.Va')">D.Va</button>
-    <button onclick="showHero('Hanzo')">Hanzo</button>
-    <button onclick="showHero('Ana')">Ana</button>
-    <button onclick="showHero('Winston')">Winston</button>
-    <button onclick="showHero('Bastion')">Bastion</button>
-    <button onclick="showHero('Sombra')">Sombra</button>
-    <button onclick="showHero('Symmetra')">Symmetra</button>
-    <button onclick="showHero('Torbjörn')">Torbjörn</button>
-    <button onclick="showHero('Zenyatta')">Zenyatta</button>
-    <button onclick="showHero('Moira')">Moira</button>
-    <button onclick="showHero('Orisa')">Orisa</button>
-    <button onclick="showHero('Roadhog')">Roadhog</button>
-    <button onclick="showHero('Junkrat')">Junkrat</button>
-    <button onclick="showHero('Pharah')">Pharah</button>
-    <button onclick="showHero('Reinhardt')">Reinhardt</button>
-    <button onclick="showHero('Zarya')">Zarya</button>
-    <button onclick="showHero('Widowmaker')">Widowmaker</button>
-    <button onclick="showHero('Soldier: Ashe')">Ashe</button>
+<!-- MAIN MENU -->
+<div id="menu" class="screen active">
+  <h1>REINHARDT FAN SITE</h1>
+  <button onclick="show('game')">PLAY GAME</button>
+  <button onclick="show('about')">ABOUT</button>
+  <button onclick="show('controls')">CONTROLS</button>
 </div>
 
-<div id="hero-info"></div>
-
-<h2>Patch Notes</h2>
-<div id="patch-notes">
-    <ul>
-        <li><strong>Patch 1.72:</strong> Buffed Tracer blink, nerfed Reaper shotguns, new skins released.</li>
-        <li><strong>Patch 1.71:</strong> Mercy rez cooldown reduced, added seasonal event skins.</li>
-        <li><strong>Patch 1.70:</strong> Horizon Lunar Colony map added, Zenyatta ultimate charge reduced.</li>
-    </ul>
+<!-- ABOUT -->
+<div id="about" class="screen">
+  <h1>ABOUT</h1>
+  <p>This site is dedicated to Reinhardt from Overwatch. Play the mini-game below!</p>
+  <button onclick="show('menu')">BACK</button>
 </div>
 
-<canvas id="particles"></canvas>
+<!-- CONTROLS -->
+<div id="controls" class="screen">
+  <h1>CONTROLS</h1>
+  <p>Move: WASD / Arrows</p>
+  <p>Shield: SPACE</p>
+  <p>Hammer attack: Click</p>
+  <p>Charge: Q | Earthshatter: E | Fire Strike: F</p>
+  <button onclick="show('menu')">BACK</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game" class="screen">
+  <div id="ui">
+    <div>HP</div><div class="bar"><div id="hp" class="fill"></div></div>
+    <div>Shield</div><div class="bar"><div id="sp" class="fill"></div></div>
+    <div id="score">Score: 0</div>
+    <div>Abilities: Q-Charge E-Earth F-Fire</div>
+  </div>
+  <div id="player" class="player"></div>
+  <div id="flash"></div>
+  <div id="gameOver"><h1>GAME OVER</h1><button onclick="restart()">RESTART</button></div>
+</div>
 
 <script>
-/* Hero Info Data */
-const heroInfo = {
-    "Tracer": "Abilities: Blink, Recall\nUltimate: Pulse Bomb\nFun Fact: Loves tea and mischief!",
-    "Genji": "Abilities: Shuriken, Deflect, Swift Strike\nUltimate: Dragonblade\nFun Fact: Brother of Hanzo, cyborg ninja!",
-    "Mercy": "Abilities: Caduceus Staff, Guardian Angel, Resurrect\nUltimate: Valkyrie\nFun Fact: Swiss field medic with angel wings!",
-    "Reaper": "Abilities: Shotguns, Wraith Form, Shadow Step\nUltimate: Death Blossom\nFun Fact: Mystery man with dual shotguns.",
-    "Soldier 76": "Abilities: Sprint, Helix Rockets, Biotic Field\nUltimate: Tactical Visor\nFun Fact: Classic all-rounder hero.",
-    "D.Va": "Abilities: Fusion Cannons, Boosters, Defense Matrix\nUltimate: Self-Destruct\nFun Fact: Pro gamer piloting a mech!",
-    "Hanzo": "Abilities: Storm Bow, Sonic Arrow, Lunge\nUltimate: Dragonstrike\nFun Fact: Master archer with a tragic past.",
-    "Ana": "Abilities: Biotic Rifle, Sleep Dart, Biotic Grenade\nUltimate: Nano Boost\nFun Fact: Veteran healer sniper.",
-    "Winston": "Abilities: Jump Pack, Tesla Cannon, Barrier Projector\nUltimate: Primal Rage\nFun Fact: Genius gorilla scientist.",
-    "Bastion": "Abilities: Configuration: Recon/Tank, Self-Repair\nUltimate: Tank Configuration\nFun Fact: Loves nature and birds.",
-    "Sombra": "Abilities: Machine Pistol, Hack, Translocator\nUltimate: EMP\nFun Fact: Hacker extraordinaire.",
-    "Symmetra": "Abilities: Photon Projector, Sentry Turret, Teleporter\nUltimate: Photon Barrier\nFun Fact: Architect who controls hard light.",
-    "Torbjörn": "Abilities: Rivet Gun, Hammer, Deploy Turret\nUltimate: Molten Core\nFun Fact: Master engineer with a beard.",
-    "Zenyatta": "Abilities: Orb of Destruction, Harmony, Discord\nUltimate: Transcendence\nFun Fact: Omnic monk spreading peace.",
-    "Moira": "Abilities: Biotic Grasp, Fade, Biotic Orb\nUltimate: Coalescence\nFun Fact: Geneticist with a mysterious past.",
-    "Orisa": "Abilities: Fusion Driver, Halt!, Protective Barrier\nUltimate: Supercharger\nFun Fact: Guardian robot built to protect.",
-    "Roadhog": "Abilities: Scrap Gun, Take a Breather, Chain Hook\nUltimate: Whole Hog\nFun Fact: Loves scrap and chaos.",
-    "Junkrat": "Abilities: Frag Launcher, Concussion Mine, Steel Trap\nUltimate: RIP-Tire\nFun Fact: Explosives fan with laughter.",
-    "Pharah": "Abilities: Rocket Launcher, Jump Jet, Concussive Blast\nUltimate: Barrage\nFun Fact: Dreams of flying high.",
-    "Reinhardt": "Abilities: Rocket Hammer, Barrier Field, Charge, Fire Strike\nUltimate: Earthshatter\nFun Fact: German knight with big hammer.",
-    "Zarya": "Abilities: Particle Cannon, Particle Barrier, Projected Barrier\nUltimate: Graviton Surge\nFun Fact: Strongest woman in Overwatch.",
-    "Widowmaker": "Abilities: Widow's Kiss, Grappling Hook, Venom Mine\nUltimate: Infra-Sight\nFun Fact: Deadly sniper with icy heart.",
-    "Soldier: Ashe": "Abilities: Viper, Coach Gun, Dynamite\nUltimate: B.O.B.\nFun Fact: Leader of Deadlock Gang."
-};
+// SCREEN NAV
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
-/* Show Hero Info */
-function showHero(hero) {
-    const info = heroInfo[hero];
-    const heroDiv = document.getElementById("hero-info");
-    heroDiv.textContent = info;
-    heroDiv.classList.remove("show");
-    void heroDiv.offsetWidth;
-    heroDiv.classList.add("show");
-}
+// GAME VARIABLES
+let player=document.getElementById("player");
+let flash=document.getElementById("flash");
+let x=300,y=300,speed=4,hp=100,shield=100,score=0;
+let keys={},enemies=[],projectiles=[],boss=null;
+let cooldowns={earth:0,charge:0,fire:0};
+let arena={width:window.innerWidth-40,height:window.innerHeight-40};
+let mouse={x:0,y:0};
+document.addEventListener("mousemove",e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+document.addEventListener("keydown",e=>keys[e.key]=true);
+document.addEventListener("keyup",e=>keys[e.key]=false);
 
-/* Search Function */
-function searchHero() {
-    const input = document.getElementById("search-box").value.toLowerCase();
-    const buttons = document.querySelectorAll("#buttons-container button");
-    buttons.forEach(btn => {
-        btn.style.display = btn.textContent.toLowerCase().includes(input) ? "inline-block" : "none";
-    });
-}
+// SPAWN ENEMIES
+function spawnEnemy(){let e=document.createElement("div");e.className="enemy";e.x=Math.random()*arena.width;e.y=Math.random()*arena.height;document.body.appendChild(e);enemies.push(e);}
+setInterval(spawnEnemy,1200);
 
-/* Sparkle Particles */
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
-const particles = [];
-for(let i=0;i<120;i++){
-    particles.push({x: Math.random()*w,y: Math.random()*h,r: Math.random()*3+1,dx:(Math.random()-0.5)*1,dy:Math.random()*1.5+0.5});
-}
-function draw(){
-    ctx.clearRect(0,0,w,h);
-    ctx.fillStyle='rgba(255,255,255,0.8)';
-    ctx.shadowBlur = 5;
-    ctx.shadowColor = 'white';
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-        if(p.y>h){p.y=0;p.x=Math.random()*w;}
-        if(p.x>w){p.x=0;}
-        if(p.x<0){p.x=w;}
-    });
-    requestAnimationFrame(draw);
-}
-draw();
-window.addEventListener('resize',()=>{w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;});
+// SPAWN BOSS
+function spawnBoss(){boss=document.createElement("div");boss.className="boss";boss.x=200;boss.y=200;boss.hp=50;document.body.appendChild(boss);}
 
-/* Opening Animation */
-window.addEventListener('load',()=>{
-    const elements = [document.querySelector('h1'), document.querySelector('p'), document.getElementById('play-game-button'), document.getElementById('search-box'), document.getElementById('buttons-container'), document.getElementById('patch-notes')];
-    elements.forEach((el,i)=>{
-        setTimeout(()=>{el.style.transition='all 1s ease'; el.style.opacity=1; el.style.transform='scale(1)';}, i*500);
-    });
+// GAME LOOP
+function gameLoop(){
+  if(showScreen=='menu'){requestAnimationFrame(gameLoop);return;}
+  if(hp<=0){document.getElementById("gameOver").style.display="block";return;}
+  if(score>0 && score%20===0 && !boss) spawnBoss();
+  // MOVE
+  if(keys["w"])y-=speed;if(keys["s"])y+=speed;if(keys["a"])x-=speed;if(keys["d"])x+=speed;
+  x=Math.max(0,Math.min(arena.width,x)); y=Math.max(0,Math.min(arena.height,y));
+  player.style.left=x+"px"; player.style.top=y+"px";
+
+  let usingShield=keys[" "]; if(usingShield && shield>0) shield-=0.6; else if(shield<100) shield+=0.3;
+
+  // ENEMIES
+  enemies.forEach(e=>{let dx=x-e.x,dy=y-e.y,dist=Math.hypot(dx,dy);e.x+=dx/dist*1.5;e.y+=dy/dist*1.5;e.style.left=e.x+"px"; e.style.top=e.y+"px";if(dist<30 && !usingShield) hp-=0.3;});
+
+  // BOSS
+  if(boss){let dx=x-boss.x,dy=y-boss.y,dist=Math.hypot(dx,dy);boss.x+=dx/dist*2;boss.y+=dy/dist*2;boss.style.left=boss.x+"px";boss.style.top=boss.y+"px";if(dist<40) hp-=0.5;}
+
+  // PROJECTILES
+  projectiles.forEach(p=>{p.x+=p.dx*5;p.y+=p.dy*5;p.style.left=p.x+"px";p.style.top=p.y+"px";
+    enemies=enemies.filter(e=>{let d=Math.hypot(p.x-e.x,p.y-e.y);if(d<20){e.remove();score++;return false;}return true;});
+    if(boss){let d=Math.hypot(p.x-boss.x,p.y-boss.y);if(d<40){boss.hp--;if(boss.hp<=0){boss.remove();boss=null;score+=10;}}}
+  });
+
+  // COOLDOWNS
+  for(let k in cooldowns) if(cooldowns[k]>0) cooldowns[k]--;
+
+  // UI
+  document.getElementById("hp").style.width=hp+"%";
+  document.getElementById("sp").style.width=shield+"%";
+  document.getElementById("score").innerText="Score: "+score;
+
+  requestAnimationFrame(gameLoop);
+}
+let showScreen='menu';gameLoop();
+
+// ATTACK
+document.addEventListener("click",()=>{
+  enemies=enemies.filter(e=>{let d=Math.hypot(e.x-x,e.y-y);if(d<80){e.remove();score++;return false;}return true;});
 });
-</script>
 
+// EARTHSHATTER
+document.addEventListener("keydown",e=>{if(e.key==="e" && cooldowns.earth<=0){enemies.forEach(e=>e.remove());enemies=[];cooldowns.earth=300;flash.style.opacity=0.5;setTimeout(()=>flash.style.opacity=0,100);}});
+
+// CHARGE
+document.addEventListener("keydown",e=>{if(e.key==="q" && cooldowns.charge<=0){x+=100*(mouse.x>x?1:-1);y+=100*(mouse.y>y?1:-1);cooldowns.charge=200;}});
+
+// FIRE STRIKE
+document.addEventListener("keydown",e=>{if(e.key==="f" && cooldowns.fire<=0){let p=document.createElement("div");p.className="projectile";let dx=mouse.x-x,dy=mouse.y-y,dist=Math.hypot(dx,dy);p.x=x;p.y=y;p.dx=dx/dist;p.dy=dy/dist;document.body.appendChild(p);projectiles.push(p);cooldowns.fire=100;}});
+
+// RESTART
+function restart(){hp=100;shield=100;score=0;enemies.forEach(e=>e.remove());enemies=[];if(boss){boss.remove();boss=null;}show('game');}
+</script>
 </body>
 </html>
+    
